@@ -1,5 +1,5 @@
 
-export interface WebResponseModel{
+export class WebResponseModel<T>{
     meta:any;
-    data:any;
+    data:T | any;
 }

@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesServcice } from './services/categories.service';
-import { PanelMenuModule } from 'primeng/panelmenu';
-import { MenuItem } from 'primeng/api';
-import { MenuMapperUtil } from '../../utils/menu-mapper.util';
+import { CategoryModel } from '../../core/models/category.model';
+
 @Component({
   selector: 'app-categories',
-  imports: [PanelMenuModule],
+  imports: [],
   templateUrl: './categories.html',
   styleUrl: './categories.scss',
 })
 export class Categories implements OnInit{
-  public items:MenuItem[]=[];
-  constructor(private categoriesService: CategoriesServcice,private menuMapper:MenuMapperUtil){
+
+  protected categories:CategoryModel[]=[];
+
+  constructor(private categoriesService: CategoriesServcice){
   }
 
   ngOnInit(): void {
@@ -21,10 +22,9 @@ export class Categories implements OnInit{
   private initCategories(){
     this.categoriesService.getCategories().subscribe({
       next:(resp)=>{
-        console.log(resp.data)
-          this.items=this.menuMapper.mapToPanelMenuItems(resp.data);
+        this.categories=resp.data;
       }
     })
   }
 
-}
+} 

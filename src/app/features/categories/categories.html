@@ -1,1 +1,15 @@
-<p-panelmenu [model]="items" styleClass="panel-menu " />
+<div class="categories-container">
+  @for (category of categories; track category.categoryId) {
+    <div class="category-block">
+      <h3>{{ category.name }}</h3>
+      
+      <ul>
+        @for (sub of category.subCategories; track sub.categoryId) {
+          <li>{{ sub.name }}</li>
+        }
+      </ul>
+    </div>
+  } @empty {
+    <h1>nothing here</h1>
+  }
+</div>

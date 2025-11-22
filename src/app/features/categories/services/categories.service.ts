@@ -3,20 +3,21 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { WebResponseModel } from "../../../core/web-reponse-model";
 import { environment } from "../../../../environments/environment";
+import { CategoryModel } from "../../../core/models/category.model";
 
 @Injectable({
     providedIn: 'root'
 })
 export class CategoriesServcice{
 
-    private apiRoot:String;
+    private apiRoot:string;
 
     constructor(private http:HttpClient){
         this.apiRoot=environment.apiUrl;
     }
 
-    public getCategories():Observable<WebResponseModel>{
-        return this.http.get<WebResponseModel>(`${this.apiRoot}/categories`);
+    public getCategories():Observable<WebResponseModel<CategoryModel>>{
+        return this.http.get<WebResponseModel<CategoryModel>>(`${this.apiRoot}/categories`);
     }
     
 

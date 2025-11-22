@@ -1,0 +1,12 @@
+<p-panel styleClass="full-panel">
+    <div class="main-container">
+        <div class="filter-list"></div>
+        <div class="item-list">
+            @for(product of products; track product.productId){
+                <div>{{product.name}}</div>
+            }@empty{
+                <h1>nothing here</h1>
+            }
+        </div>
+    </div>
+</p-panel>
