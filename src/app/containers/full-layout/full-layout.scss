@@ -16,3 +16,15 @@
     overflow-y: auto;
     background-color: whitesmoke;
 }
+.menu-collapsed {
+    width: 0 !important;
+    overflow: hidden;
+    opacity: 0;
+    transition: width 0.2s ease, opacity 0.2s ease;
+    }
+    
+.sidebar {
+    width: 200px;
+    transition: width 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+    overflow: hidden;
+}

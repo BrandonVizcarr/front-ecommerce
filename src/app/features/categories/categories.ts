@@ -11,6 +11,7 @@ import { CategoryModel } from '../../core/models/category.model';
 export class Categories implements OnInit{
 
   protected categories:CategoryModel[]=[];
+  protected expandedCategoryId?: number | any;
 
   constructor(private categoriesService: CategoriesServcice){
   }
@@ -25,6 +26,10 @@ export class Categories implements OnInit{
         this.categories=resp.data;
       }
     })
+  }
+  
+  toggle(id?: number) {
+    this.expandedCategoryId = this.expandedCategoryId === id ? undefined : id;
   }
 
 } 

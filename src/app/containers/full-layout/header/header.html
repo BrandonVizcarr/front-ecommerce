@@ -1,12 +1,15 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
     <div class="navbar-subcontainer">
         <div class="title-container">
+            <p-button severity="contrast" (click)="toggleMenu.emit()">
+                <i class="pi pi-bars"></i>
+            </p-button>
             <p>ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧ Ecommerce Example</p>
         </div>
         <div class="searc-container">
             <p-inputGroup>
                 <input pInputText type="text" placeholder="Buscar productos..." />
-                <p-button icon="pi pi-search" severity="secondary" ></p-button>
+                <p-button icon="pi pi-search" severity="secondary"></p-button>
             </p-inputGroup>
         </div>
         <div class="cart-container">

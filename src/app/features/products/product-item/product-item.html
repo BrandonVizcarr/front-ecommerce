@@ -1,0 +1,25 @@
+<a class="item" [routerLink]="['/details', productItem().productId]">
+    <img src="{{productItem().media[0]}}" alt="" class="product-image">
+    <div class="specs">
+        <div class="name-and-price">
+            <h3>{{productItem().name}}</h3>
+            <p class="seller-name">{{productItem().seller.name}}
+                @if(productItem().seller.verified){
+                <i class="pi pi-check-circle" style="color: #4caf50; margin-left: 4px;"></i>
+                }
+            </p>
+            <p>price: {{productItem().price}}
+                @if(productItem().discount != 0){
+                    <span class="discount">{{productItem().discount}}% OFF</span>
+                }
+            </p> 
+        </div>
+        <div class="rate-and-sold">
+            <div>
+                <i class="pi pi-star-fill"></i>
+                {{productItem().rate}}
+            </div>
+            <p>stock: {{productItem().stock}}</p>
+        </div>
+    </div>
+</a>

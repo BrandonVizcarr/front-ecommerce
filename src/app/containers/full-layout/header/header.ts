@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { PanelModule } from 'primeng/panel';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -12,5 +12,5 @@ import { InputGroupModule } from 'primeng/inputgroup';
 })
 
 export class Header {
-
+  toggleMenu = output<void>();
 }

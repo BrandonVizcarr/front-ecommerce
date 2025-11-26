@@ -3,10 +3,9 @@
         <div class="filter-list"></div>
         <div class="item-list">
             @for(product of products; track product.productId){
-                <div>{{product.name}}</div>
-            }@empty{
-                <h1>nothing here</h1>
+                <app-product-item [productItem]="product"></app-product-item>
             }
         </div>
     </div>
+    <p-paginator (onPageChange)="onPageChange($event)" [rows]="size" [totalRecords]="totalElements"/>
 </p-panel>

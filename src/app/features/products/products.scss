@@ -1,3 +1,16 @@
 .main-container{
     display: flex;
 }
+.filter-list{
+    width: 20%;
+}
+.item-list{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+app-product-item{
+    width: 100%;
+}

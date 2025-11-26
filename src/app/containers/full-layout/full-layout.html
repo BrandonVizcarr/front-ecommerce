@@ -1,11 +1,13 @@
 <div class="app-container">
     
-    <app-header></app-header>
+    <app-header (toggleMenu)="toggleMenu()"></app-header>
 
     <div class="main-body">
-        
-        <app-menu style="width: 250px; flex-shrink: 0;"></app-menu>
-        
+        <app-menu 
+            [class.menu-collapsed]="!menuOpen()" 
+            style="width: 200px; flex-shrink: 0;"
+            class="sidebar"
+        ></app-menu>    
         <div class="content-area">
             <router-outlet></router-outlet>
         </div>
@@ -13,3 +15,4 @@
     </div>
 
 </div>
+<app-loader></app-loader>

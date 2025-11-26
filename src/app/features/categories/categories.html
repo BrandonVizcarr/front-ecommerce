@@ -1,15 +1,21 @@
 <div class="categories-container">
+  <h2>Categories</h2>
   @for (category of categories; track category.categoryId) {
     <div class="category-block">
-      <h3>{{ category.name }}</h3>
-      
-      <ul>
-        @for (sub of category.subCategories; track sub.categoryId) {
-          <li>{{ sub.name }}</li>
-        }
-      </ul>
+
+      <h3 (click)="toggle(category.categoryId)" class="category-title">
+        {{ category.name }}
+      </h3>
+
+      @if (expandedCategoryId === category.categoryId) {
+        <ul class="subcategories">
+          @for (sub of category.subCategories; track sub.categoryId) {
+            <li >
+              {{ sub.name }}
+            </li>
+          }
+        </ul>
+      }
     </div>
-  } @empty {
-    <h1>nothing here</h1>
   }
 </div>
