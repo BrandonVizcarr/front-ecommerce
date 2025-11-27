@@ -1,1 +1,86 @@
-<p>product-detail works!</p>
+<p-panel>
+    <div class="main-container">
+        <div class="viewer">
+            <div class="main-box">
+                <button class="nav left" (click)="prevImage()">
+                    <i class="pi pi-chevron-left"></i>
+                </button>
+                <img class="main-img" [src]="images[currentIndex]" />
+                <button class="nav right" (click)="nextImage()">
+                    <i class="pi pi-chevron-right"></i>
+                </button>
+            </div>
+            <div class="thumbs">
+                @for (img of images; track $index; let i = $index) {
+                <div class="thumb" [class.active]="i === currentIndex" (click)="selectImage(i)">
+                    <img [src]="img" />
+                </div>
+                }
+            </div>
+        </div>
+        <div class="product-actions">
+            <div class="specs">
+                <h2>{{ product?.name }}</h2>
+                <p class="seller-name">
+                    {{ product?.seller.name }}
+
+                    @if (product?.seller.verified) {
+                    <i class="pi pi-check-circle" style="color: #4caf50; margin-left: 4px;">
+                    </i>
+                    }
+                </p>
+
+                <p>
+                    price: {{ product?.price }} $
+
+                    @if (product?.discount != 0) {
+                    <span class="discount">
+                        {{ product?.discount }}% OFF
+                    </span>
+                    }
+                </p>
+                <div class="rate-and-sold">
+                    <div class="rating">
+                        <i class="pi pi-star-fill"></i>
+                        {{ product?.rate }}
+                    </div>
+
+                    <p>stock: {{ product?.stock }}</p>
+                </div>
+                <div class="about-product">
+                    <p>About the product:</p>
+                    <article>
+                        {{product?.description}}
+                    </article>
+                </div>
+            </div>
+            <div class="cards-container">
+                <p-card [style]="{ width: '100%', padding: '1rem', 'text-align': 'center' }">
+                    <div class="quantity-container">
+                        <p>Quantity:</p>
+                        <select class="form-select"  [(ngModel)]="quantity">
+                        @for (n of quantities; track $index) {
+                            <option [value]="n">{{ n }}</option>
+                        }
+                        </select>
+                    </div>
+                    <p-button>Add to cart <i class="pi pi-shopping-cart"></i></p-button> &nbsp;
+                    <p-button>Buy now</p-button>
+                    <div class="seller-info">
+                        <p>verified store: {{product?.seller.name}}
+                            @if (product?.seller.verified) {
+                                <i class="pi pi-check-circle" style="color: #4caf50; margin-left: 4px;">
+                                </i>
+                            }
+                        </p>
+                        <img [src]="product?.seller.profileImg" alt="">
+                        <div class="rating">
+                            <i class="pi pi-star-fill"></i>
+                            {{ product?.seller.rate }}
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+    </div>
+</p-panel>

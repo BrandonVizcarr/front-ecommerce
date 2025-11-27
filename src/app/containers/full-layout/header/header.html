@@ -8,8 +8,8 @@
         </div>
         <div class="searc-container">
             <p-inputGroup>
-                <input pInputText type="text" placeholder="Buscar productos..." />
-                <p-button icon="pi pi-search" severity="secondary"></p-button>
+                <input pInputText type="text" [(ngModel)]="searchText" placeholder="Buscar productos..." />
+                <p-button icon="pi pi-search" severity="secondary" (click)="search()"></p-button>
             </p-inputGroup>
         </div>
         <div class="cart-container">

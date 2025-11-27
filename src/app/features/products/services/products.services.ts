@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../../../environments/environment";
 import { Observable } from "rxjs";
@@ -17,9 +17,36 @@ export class ProductService {
         this.apiRoot=environment.apiUrl;
     }
 
-    public getProducts():Observable<WebResponseModel<PageableModel<ProductModel>>>{
-        return this.http.get<WebResponseModel<PageableModel<ProductModel>>>(`${this.apiRoot}/products`);
+    public getProducts(params?: {
+        q?: string;
+        minPrice?: number;
+        maxPrice?: number;
+        categoryId?: number;
+        canceled?: boolean;
+        page?: number;
+        size?: number;
+        sortBy?: string;
+        direction?: string;
+    }): Observable<WebResponseModel<PageableModel<ProductModel>>> {
+
+        let httpParams = new HttpParams();
+
+        if (params) {
+            Object.entries(params).forEach(([key, value]) => {
+                if (value !== null && value !== undefined && value !== '') {
+                    httpParams = httpParams.set(key, value as any);
+                }
+            });
+        }
+
+        return this.http.get<WebResponseModel<PageableModel<ProductModel>>>(
+            `${this.apiRoot}/products`,
+            { params: httpParams }
+        );
     }
 
+    public getProductsById(id:string):Observable<WebResponseModel<ProductModel>>{
+        return this.http.get<WebResponseModel<ProductModel>>(`${this.apiRoot}/products/${id}`);
+    }
 
 }
