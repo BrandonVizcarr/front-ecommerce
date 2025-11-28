@@ -10,7 +10,7 @@
       @if (expandedCategoryId === category.categoryId) {
         <ul class="subcategories">
           @for (sub of category.subCategories; track sub.categoryId) {
-            <li >
+            <li (click)="searchCategory(sub.categoryId)"  class="sub-item">
               {{ sub.name }}
             </li>
           }

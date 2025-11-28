@@ -52,6 +52,13 @@
     color: #1a73e8;
     margin-top: 1rem;
 }
+.seller-img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .viewer {
     width: 500px;
     display: flex;

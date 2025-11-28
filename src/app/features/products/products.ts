@@ -6,6 +6,7 @@ import { ProductItem } from './product-item/product-item';
 import { PaginatorModule } from 'primeng/paginator';
 import { LoaderService } from '../../core/services/loader/loader.service';
 import { searchSignal } from '../../containers/full-layout/header/search-signal';
+import { CategorySignal } from '../categories/services/category-signal';
 
 @Component({
   selector: 'app-products',
@@ -26,11 +27,11 @@ export class Products implements OnInit {
     private loaderService: LoaderService
   ) {
     effect(() => {
-      const query = searchSignal();
-      if (query === '') {
+      if(searchSignal()!=''){
         this.initProducts();
-      } else {
-        this.searchProducts(query);
+      }
+      if(CategorySignal() != 0){
+        this.initProducts();
       }
     });
   }
@@ -41,22 +42,20 @@ export class Products implements OnInit {
 
   initProducts() {
     this.loaderService.show();
-    this.productService.getProducts({ page: this.page, size: this.size }).subscribe({
+    const subCategoryId = CategorySignal();
+    const query = searchSignal();
+    const params:any = {
+      page: this.page, 
+      size: this.size,
+    }
+    if(subCategoryId!=0)params.subCategoryId = subCategoryId;
+    if(query != '') params.q = query;
+    this.productService.getProducts(params).subscribe({
       next: resp => {
         this.products = resp.data.content;
         this.totalElements = resp.data.totalElements;
-        this.loaderService.hide();
-      },
-      error: () => this.loaderService.hide()
-    });
-  }
-
-  searchProducts(query: string) {
-    this.loaderService.show();
-    this.productService.getProducts({ q: query, page: 0, size: this.size }).subscribe({
-      next: resp => {
-        this.products = resp.data.content;
-        this.totalElements = resp.data.totalElements;
+        searchSignal.set('');
+        CategorySignal.set(0);
         this.loaderService.hide();
       },
       error: () => this.loaderService.hide()

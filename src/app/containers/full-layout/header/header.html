@@ -8,7 +8,7 @@
         </div>
         <div class="searc-container">
             <p-inputGroup>
-                <input pInputText type="text" [(ngModel)]="searchText" placeholder="Buscar productos..." />
+                <input pInputText type="text" [(ngModel)]="searchText" (keydown.enter)="search()" placeholder="Search products" />
                 <p-button icon="pi pi-search" severity="secondary" (click)="search()"></p-button>
             </p-inputGroup>
         </div>

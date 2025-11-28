@@ -5,10 +5,9 @@ import { Products } from './features/products/products';
 import { ProductDetail } from './features/products/product-detail/product-detail';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', redirectTo: 'products', pathMatch: 'full' },
     {
         path: '', component: FullLayout, children: [
-            { path: 'home', component: Dashboard },
             {
                 path: 'products',
                 children: [

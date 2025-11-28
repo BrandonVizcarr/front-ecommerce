@@ -22,6 +22,7 @@ export class ProductService {
         minPrice?: number;
         maxPrice?: number;
         categoryId?: number;
+        subCategoryId?: number;
         canceled?: boolean;
         page?: number;
         size?: number;

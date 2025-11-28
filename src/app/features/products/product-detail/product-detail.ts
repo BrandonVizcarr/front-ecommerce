@@ -1,5 +1,5 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PanelModule } from 'primeng/panel';
 import { ProductModel } from '../../../core/models/product.model';
 import { ProductService } from '../services/products.services';
@@ -7,6 +7,8 @@ import { CardModule } from 'primeng/card';
 import { Button } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CategorySignal } from '../../categories/services/category-signal';
+import { searchSignal } from '../../../containers/full-layout/header/search-signal';
 
 @Component({
   selector: 'app-product-detail',
@@ -23,11 +25,25 @@ export class ProductDetail implements OnInit {
   protected images: string[] = [];
   protected currentIndex = 0;
   protected quantities: number[] = [];
+  private isFirstRun = true;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,private router: Router) {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       this.productId.set(id);
+    });
+   effect(() => {
+      const category = CategorySignal();
+      const search = searchSignal();
+
+      if (this.isFirstRun) {
+        this.isFirstRun = false;
+        return;
+      }
+
+      if (category || search) {
+        this.router.navigate(['/products']);
+      }
     });
   }
 
