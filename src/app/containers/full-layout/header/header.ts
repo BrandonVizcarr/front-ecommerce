@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { searchSignal } from './search-signal';
 import { FormsModule } from '@angular/forms';
+import { CartSignal } from './cart-signal';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,10 @@ export class Header {
 
   toggleMenu = output<void>();
   searchText = '';
+  cartCount = computed(() =>
+    CartSignal().cartItem?.reduce((acc, item) => acc + (item.quantity ?? 0), 0) || 0
+  );
+
 
   search() {
     searchSignal.set(this.searchText.trim());

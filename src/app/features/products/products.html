@@ -1,9 +1,15 @@
 <p-panel styleClass="full-panel">
     <div class="main-container">
-        <div class="filter-list"></div>
+        <div class="filter-list">
+
+            
+        </div>
         <div class="item-list">
             @for(product of products; track product.productId){
                 <app-product-item [productItem]="product"></app-product-item>
+            }
+            @empty{
+                <h1>There is literally nothing here</h1>
             }
         </div>
     </div>

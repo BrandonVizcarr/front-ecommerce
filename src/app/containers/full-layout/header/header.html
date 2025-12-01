@@ -14,6 +14,9 @@
         </div>
         <div class="cart-container">
             <i class="pi pi-shopping-cart" style="font-size: 1.5rem; color: white;"></i>
+             @if (cartCount() > 0) {
+                <span class="cart-badge">{{ cartCount() }}</span>
+            }
         </div>
     </div>
 </nav>
