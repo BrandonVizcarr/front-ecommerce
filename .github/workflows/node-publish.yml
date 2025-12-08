@@ -43,4 +43,14 @@ jobs:
       - name: Deploy build via rsync
         run: |
           PROJECT_NAME="${GITHUB_REPOSITORY#*/}"
-          rsync -avz --delete dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/root/proyectos/$PROJECT_NAME/
+          rsync -avz --delete dist/browser/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/root/proyectos/$PROJECT_NAME/
+
+      - name: Run Angular on port 4200 (http-server)
+        run: |
+          PROJECT_NAME="${GITHUB_REPOSITORY#*/}"
+          
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+            npm install -g http-server &&
+            pkill http-server || true &&
+            nohup http-server /root/proyectos/$PROJECT_NAME -p 4200 > /dev/null 2>&1 &
+          "
