@@ -15,7 +15,7 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install dependencies
         run: npm install
@@ -37,8 +37,10 @@ jobs:
 
       - name: Create project folder on VPS
         run: |
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "mkdir -p /root/proyectos/mi-proyecto/"
+          PROJECT_NAME="${GITHUB_REPOSITORY#*/}"
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "mkdir -p /root/proyectos/$PROJECT_NAME/"
 
       - name: Deploy build via rsync
         run: |
-          rsync -avz --delete dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/root/proyectos/mi-proyecto/
+          PROJECT_NAME="${GITHUB_REPOSITORY#*/}"
+          rsync -avz --delete dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/root/proyectos/$PROJECT_NAME/
