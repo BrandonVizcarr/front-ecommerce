@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "front-ecomerce:build:production"
+              "buildTarget": "front-ecommerce:build:production"
             },
             "development": {
-              "buildTarget": "front-ecomerce:build:development"
+              "buildTarget": "front-ecommerce:build:development"
             }
           },
           "defaultConfiguration": "development"
