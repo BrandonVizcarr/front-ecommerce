@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "front-ecomerce": {
+    "front-ecommerce": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {

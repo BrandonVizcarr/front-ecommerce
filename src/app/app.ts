@@ -7,5 +7,5 @@ import { RouterOutlet } from '@angular/router';
   template:'<router-outlet></router-outlet>'
 })
 export class App {
-  protected readonly title = signal('front-ecomerce');
+  protected readonly title = signal('front-ecommerce');
 }
