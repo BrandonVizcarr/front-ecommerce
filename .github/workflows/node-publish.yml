@@ -48,8 +48,12 @@ jobs:
       - name: Run Angular on port 4200 (http-server)
         run: |
           PROJECT_NAME="${GITHUB_REPOSITORY#*/}"
-          
+      
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
-            pkill http-server || true &&
-            nohup http-server /root/proyectos/$PROJECT_NAME -p 4200 > /dev/null 2>&1 &
+            pkill -f http-server || true
+            nohup http-server /root/proyectos/$PROJECT_NAME \
+              -p 4200 \
+              --spa \
+              --host 0.0.0.0 \
+              > /tmp/http-server.log 2>&1 &
           "
