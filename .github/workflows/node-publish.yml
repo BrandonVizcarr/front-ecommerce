@@ -22,7 +22,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build Angular (SSR)
-        run: npm run build -- --configuration production
+        run: npm run build
 
       - name: Configure SSH
         run: |
