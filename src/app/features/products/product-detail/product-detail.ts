@@ -7,12 +7,15 @@ import { CardModule } from 'primeng/card';
 import { Button } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CategorySignal } from '../../categories/services/category-signal';
-import { searchSignal } from '../../../containers/full-layout/header/search-signal';
+import { CategorySignal } from '../../../core/signals/category-signal';
+import { searchSignal } from '../../../core/signals/search-signal';
+import {DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { BuyItem } from './buy-item/buy-item';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [PanelModule,CardModule,Button,CommonModule,FormsModule],
+  imports: [PanelModule,CardModule,Button,CommonModule,FormsModule,DynamicDialogModule],
+  providers:[DialogService],
   templateUrl: './product-detail.html',
   styleUrl: './product-detail.scss',
 })
@@ -26,8 +29,10 @@ export class ProductDetail implements OnInit {
   protected currentIndex = 0;
   protected quantities: number[] = [];
   private isFirstRun = true;
+  ref!: DynamicDialogRef |null;
 
-  constructor(private productService: ProductService,private router: Router) {
+
+  constructor(private productService: ProductService,private router: Router, private dynamicDialogService:DialogService) {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       this.productId.set(id);
@@ -81,5 +86,19 @@ export class ProductDetail implements OnInit {
       this.currentIndex--;
     }
   }
+
+  buyItem(){
+    this.ref = this.dynamicDialogService.open(
+      BuyItem,{
+        header:'😅 Upsss..',
+        width:'auto',
+        height:'auto',
+        modal:true,
+        closable:true
+      }
+    )
+  }
+
+  
 
 }

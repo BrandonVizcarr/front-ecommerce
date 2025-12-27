@@ -3,9 +3,9 @@ import { PanelModule } from 'primeng/panel';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { InputGroupModule } from 'primeng/inputgroup';
-import { searchSignal } from './search-signal';
+import { searchSignal } from '../../../core/signals/search-signal';
 import { FormsModule } from '@angular/forms';
-import { CartSignal } from './cart-signal';
+import { CartSignal } from '../../../core/signals/cart-signal';
 
 @Component({
   selector: 'app-header',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesServcice } from './services/categories.service';
 import { CategoryModel } from '../../core/models/category.model';
-import { CategorySignal } from './services/category-signal';
+import { CategorySignal } from '../../core/signals/category-signal';
 
 @Component({
   selector: 'app-categories',

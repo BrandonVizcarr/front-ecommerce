@@ -5,8 +5,8 @@ import { PanelModule } from 'primeng/panel';
 import { ProductItem } from './product-item/product-item';
 import { PaginatorModule } from 'primeng/paginator';
 import { LoaderService } from '../../core/services/loader/loader.service';
-import { searchSignal } from '../../containers/full-layout/header/search-signal';
-import { CategorySignal } from '../categories/services/category-signal';
+import { searchSignal } from '../../core/signals/search-signal';
+import { CategorySignal } from '../../core/signals/category-signal';
 
 @Component({
   selector: 'app-products',
