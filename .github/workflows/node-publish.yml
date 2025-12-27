@@ -45,11 +45,4 @@ jobs:
           PROJECT_NAME="${GITHUB_REPOSITORY#*/}"
           rsync -avz --delete dist/browser/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/root/proyectos/$PROJECT_NAME/
 
-      - name: Run Angular on port 4200 (http-server)
-        run: |
-          PROJECT_NAME="${GITHUB_REPOSITORY#*/}"
-      
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
-          "pkill -f http-server || true; http-server /root/proyectos/$PROJECT_NAME -p 4200 --spa --host 0.0.0.0"
-      
-      
+    
