@@ -19,9 +19,9 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
-      - name: Build Angular (production)
+      - name: Build Angular (SSR)
         run: npm run build -- --configuration production
 
       - name: Configure SSH
@@ -31,17 +31,15 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H "${{ secrets.SERVER_HOST }}" >> ~/.ssh/known_hosts
 
-      - name: Deploy build to VPS
+      - name: Deploy dist/browser to VPS
         run: |
-          PROJECT_NAME="${GITHUB_REPOSITORY#*/}"
-
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
-            mkdir -p /var/www/$PROJECT_NAME
+            mkdir -p /var/www/front-ecommerce
           "
 
           rsync -avz --delete \
-            dist/$PROJECT_NAME/ \
-            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/$PROJECT_NAME/
+            dist/browser/ \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/front-ecommerce/
 
       - name: Reload NGINX
         run: |
