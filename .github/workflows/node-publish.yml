@@ -49,12 +49,7 @@ jobs:
         run: |
           PROJECT_NAME="${GITHUB_REPOSITORY#*/}"
       
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "bash -lc '
-            pkill -f http-server || true
-            nohup http-server /root/proyectos/$PROJECT_NAME \
-              -p 4200 \
-              --spa \
-              --host 0.0.0.0 \
-              > /tmp/http-server.log 2>&1 &
-          '"
-
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
+          "pkill -f http-server || true; http-server /root/proyectos/$PROJECT_NAME -p 4200 --spa --host 0.0.0.0"
+      
+      
