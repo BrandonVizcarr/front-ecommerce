@@ -10,36 +10,38 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Build Angular
-        # Genera el build con base-href para subruta /front-ecommerce
+      - name: Build Angular (subruta /front-ecommerce)
         run: npm run build -- --configuration production --base-href /front-ecommerce/
 
       - name: Add SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-        env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
 
       - name: Add known hosts
-        run: |
-          ssh-keyscan -H "${{ secrets.SERVER_HOST }}" >> ~/.ssh/known_hosts
+        run: ssh-keyscan -H "${{ secrets.SERVER_HOST }}" >> ~/.ssh/known_hosts
 
-      - name: Create target folder on VPS
+      - name: Prepare target folder on VPS
         run: |
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "mkdir -p /var/www/html/brandonviz.dev/front-ecommerce/"
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+            mkdir -p /var/www/html/brandonviz.dev/front-ecommerce &&
+            chown -R www-data:www-data /var/www/html/brandonviz.dev
+          "
 
       - name: Deploy build via rsync
         run: |
-          rsync -avz --delete dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/html/brandonviz.dev/front-ecommerce/
+          rsync -avz --delete \
+            dist/ \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/html/brandonviz.dev/front-ecommerce/
