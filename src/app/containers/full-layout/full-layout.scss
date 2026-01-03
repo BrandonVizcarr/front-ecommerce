@@ -8,7 +8,7 @@
 .main-body {
     flex-grow: 1;
     display: flex;
-
+    margin-top: var(--navbar-height);
 }
 .content-area {
     flex-grow: 1;

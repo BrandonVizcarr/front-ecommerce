@@ -1,3 +1,8 @@
+.navbar{
+    position: fixed;
+    width: 100%;
+    height: var(--navbar-height);
+}
 .navbar-subcontainer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
