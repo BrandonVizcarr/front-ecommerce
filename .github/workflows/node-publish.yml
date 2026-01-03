@@ -43,7 +43,7 @@ jobs:
       - name: Deploy build via rsync
         run: |
           rsync -avz --delete \
-            dist/ \
+            dist/browser/ \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/html/brandonviz.dev/front-ecommerce/
       - name: Fix permissions
         run: |
