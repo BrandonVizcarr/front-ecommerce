@@ -45,3 +45,9 @@ jobs:
           rsync -avz --delete \
             dist/ \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/html/brandonviz.dev/front-ecommerce/
+      - name: Fix permissions
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+            chown -R www-data:www-data /var/www/html/brandonviz.dev &&
+            chmod -R 755 /var/www/html/brandonviz.dev
+          "
