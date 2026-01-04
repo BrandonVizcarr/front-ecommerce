@@ -1,4 +1,4 @@
-import { Component, OnInit, effect, inject } from '@angular/core';
+import { Component, OnInit, effect } from '@angular/core';
 import { ProductModel } from '../../core/models/product.model';
 import { ProductService } from './services/products.services';
 import { PanelModule } from 'primeng/panel';
@@ -7,11 +7,13 @@ import { PaginatorModule } from 'primeng/paginator';
 import { LoaderService } from '../../core/services/loader/loader.service';
 import { searchSignal } from '../../core/signals/search-signal';
 import { CategorySignal } from '../../core/signals/category-signal';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [PanelModule, ProductItem, PaginatorModule],
+  imports: [PanelModule, ProductItem, PaginatorModule, InputNumberModule,Button],
   templateUrl: './products.html',
   styleUrls: ['./products.scss'],
 })

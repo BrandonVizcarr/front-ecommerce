@@ -13,9 +13,12 @@
             </p-inputGroup>
         </div>
         <div class="cart-container">
-            <i class="pi pi-shopping-cart" style="font-size: 1.5rem; color: white;"></i>
-             @if (cartCount() > 0) {
-                <span class="cart-badge">{{ cartCount() }}</span>
+            @if(cartCount() > 0){
+            <p-overlaybadge [value]="cartCount()" severity="danger" badgeSize="small">
+                <i class="pi pi-shopping-cart cart-icon" style="font-size: 1.7rem; color: white;"></i>
+            </p-overlaybadge>
+            }@else{
+                <i class="pi pi-shopping-cart cart-icon" style="font-size: 1.7rem; color: white;"></i>
             }
         </div>
     </div>

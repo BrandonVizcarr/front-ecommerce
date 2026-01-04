@@ -11,6 +11,8 @@ import { CategorySignal } from '../../../core/signals/category-signal';
 import { searchSignal } from '../../../core/signals/search-signal';
 import {DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BuyItem } from './buy-item/buy-item';
+import { LoaderService } from '../../../core/services/loader/loader.service';
+import { CartSignal } from '../../../core/signals/cart-signal';
 
 @Component({
   selector: 'app-product-detail',
@@ -23,16 +25,16 @@ export class ProductDetail implements OnInit {
 
   private route = inject(ActivatedRoute);
   protected product?: ProductModel;
-  protected quantity = 1;
+  protected quantity:number = 1;
   protected productId = signal<string | null>(null);
   protected images: string[] = [];
   protected currentIndex = 0;
   protected quantities: number[] = [];
   private isFirstRun = true;
   ref!: DynamicDialogRef |null;
+  public card =CartSignal();
 
-
-  constructor(private productService: ProductService,private router: Router, private dynamicDialogService:DialogService) {
+  constructor(private productService: ProductService,private router: Router, private dynamicDialogService:DialogService, private loaderService:LoaderService) {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       this.productId.set(id);
@@ -57,6 +59,7 @@ export class ProductDetail implements OnInit {
   }
 
   initProduct() {
+    this.loaderService.show();
     this.productService.getProductsById(this.productId()!!).subscribe({
       next: (resp) => {
         this.product = resp.data;
@@ -65,6 +68,7 @@ export class ProductDetail implements OnInit {
         const stock = this.product?.stock ?? 0;
         const max = Math.min(stock, 10);
         this.quantities = Array.from({ length: max }, (_, i) => i + 1);
+        this.loaderService.hide();
       }
     });
   }
@@ -98,6 +102,44 @@ export class ProductDetail implements OnInit {
       }
     )
   }
+
+  addToCard() {
+    if (!this.product) return;
+
+    const qtyToAdd = Number(this.quantity);
+    const stock = Number(this.product.stock ?? 0);
+
+    CartSignal.update(cart => {
+      const items = cart.cartItems ?? [];
+
+      const existingItem = items.find(
+        i => i.product?.productId === this.product?.productId
+      );
+
+      const existingQty = Number(existingItem?.quantity) || 0;
+      const finalQty = Math.min(existingQty + qtyToAdd, stock);
+
+      const updatedItems = existingItem
+        ? items.map(i =>
+          i.product?.productId === this.product?.productId
+            ? { ...i, quantity: finalQty }
+            : i
+        )
+        : [
+          ...items,
+          {
+            product: this.product,
+            quantity: Math.min(qtyToAdd, stock)
+          }
+        ];
+
+      const updatedCart = { ...cart, cartItems: updatedItems };
+
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      return updatedCart;
+    });
+  }
+
 
   
 

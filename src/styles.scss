@@ -24,3 +24,15 @@ p{
     font-weight: bold;
     font-size: small;
 }
+.small-input {
+  width: 8em;
+  height: 1em;
+  font-size: 0.8em;
+}
+.p-inputnumber-input.small-input {
+    font-size: 9pt;
+}
+.p-inputnumber-input.small-input:focus {
+    border-color: #ced4da !important;
+    box-shadow: none !important;
+}

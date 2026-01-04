@@ -3,5 +3,5 @@ import { CartItemModel } from "./cart-item.model";
 export interface CartModel{
     cartId?:number;
     userId?:string;
-    cartItem?:CartItemModel[];
+    cartItems?:CartItemModel[];
 }

@@ -2,10 +2,23 @@
     display: flex;
 }
 .filter-list{
-    width: 20%;
+    width: 30%;
+    margin-top: 1rem;
+    p{
+        margin: 0;
+    }
+    .range-price-container{
+        display: flex;
+        align-items: center;
+        gap: .2rem;
+        .p-field{
+            height: 30px;
+        }
+    }
 }
+
 .item-list{
-    width: 80%;
+    width: 70%;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -64,7 +64,7 @@
                         }
                         </select>
                     </div>
-                    <p-button>Add to cart <i class="pi pi-shopping-cart"></i></p-button> &nbsp;
+                    <p-button (click)="addToCard()">Add to cart <i class="pi pi-shopping-cart"></i></p-button> &nbsp;
                     <p-button (click)="buyItem()">Buy now</p-button>
                     <div class="seller-info">
                         <p>verified store: {{product?.seller.name}}
