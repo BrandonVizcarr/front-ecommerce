@@ -1,37 +1,74 @@
-<a class="item" 
-   [routerLink]="['/products', productItem().productId]">
-    <img [src]="productItem().media[0]" 
-         alt="" 
-         class="product-image">
+<a class="item" [routerLink]="['/products', productItem().productId]">
+
+    <div class="image-wrapper">
+        <img [src]="productItem().media[0]" alt="{{ productItem().name }}" class="product-image" />
+
+        @if (productItem().discount != 0) {
+        <span class="badge-discount">
+            -{{ productItem().discount }}%
+        </span>
+        }
+    </div>
+
     <div class="specs">
+
         <div class="name-and-price">
-            <h3>{{ productItem().name }}</h3>
+            <h3 class="product-name">
+                {{ productItem().name }}
+            </h3>
+
             <p class="seller-name">
                 {{ productItem().seller.name }}
-
                 @if (productItem().seller.verified) {
-                    <i class="pi pi-check-circle" 
-                       style="color: #4caf50; margin-left: 4px;">
-                    </i>
+                <i class="pi pi-check-circle verified"></i>
                 }
             </p>
-            <p>
-                price: {{ productItem().price }} $
-                
-                @if (productItem().discount != 0) {
-                    <span class="discount">
-                        {{ productItem().discount }}% OFF
-                    </span>
+
+            <div class="price-container">
+                <span class="price">
+                    ${{ productItem().price }}
+                </span>
+
+                @if (productItem().previousPrice) {
+                <span class="previous-price">
+                    ${{ productItem().previousPrice }}
+                </span>
                 }
-            </p>
+            </div>
+
+            <div class="tags">
+                <span class="tag outline">
+                    {{ productItem().descCondition }}
+                </span>
+
+                @if (productItem().freeDelivery) {
+                <span class="tag success">
+                    <i class="pi pi-truck"></i> Free delivery
+                </span>
+                }
+
+                @if (productItem().fastDelivery) {
+                <span class="tag info">
+                    <i class="pi pi-bolt"></i> Fast delivery
+                </span>
+                }
+            </div>
         </div>
+
         <div class="rate-and-sold">
             <div class="rating">
                 <i class="pi pi-star-fill"></i>
-                {{ productItem().rate }}
+                <span>{{ productItem().rate }}</span>
             </div>
 
-            <p>stock: {{ productItem().stock }}</p>
+            <p class="sold">
+                {{ productItem().soldCount }} sold
+            </p>
+
+            <p class="stock" [class.low-stock]="productItem().stock < 5">
+                {{ productItem().stock }} in stock
+            </p>
         </div>
+
     </div>
 </a>

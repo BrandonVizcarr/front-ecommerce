@@ -3,11 +3,12 @@ export interface ProductModel{
     productId?:string;
     name?:string;
     description?:string;
-    rate?:number;
-    rateCount?:number;
-    price?:number;
+    rate:number;
+    rateCount:number;
+    price:number;
+    previousPrice?:number;
     discount?:number;
-    stock?:number;
+    stock:number;
     createdAt?:Date;
     updatedAt?:Date;
     media?:string[] | any;
@@ -17,4 +18,8 @@ export interface ProductModel{
     sellerId?:number;
     brandId?:number;
     seller?:any;
+    soldCount:number;
+    freeDelivery:boolean;
+    fastDelivery:boolean;
+    descCondition:string;
 }

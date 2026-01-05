@@ -8,12 +8,11 @@ import { LoaderService } from '../../core/services/loader/loader.service';
 import { searchSignal } from '../../core/signals/search-signal';
 import { CategorySignal } from '../../core/signals/category-signal';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [PanelModule, ProductItem, PaginatorModule, InputNumberModule,Button],
+  imports: [PanelModule, ProductItem, PaginatorModule, InputNumberModule],
   templateUrl: './products.html',
   styleUrls: ['./products.scss'],
 })

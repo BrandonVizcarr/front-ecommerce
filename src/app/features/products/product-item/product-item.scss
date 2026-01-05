@@ -1,53 +1,251 @@
 .item {
-    height: 15rem;
-    border-style: solid;
-    border-color: darkgray;
-    border-width: 1px;
-    border-left: none;
-    border-right: none;
-    border-top: none;
     display: flex;
-    align-items: center;
-    width: 100%;
     gap: 1rem;
-    text-decoration: none;
-}
-
-h3 {
-    margin-top: 1rem;
-    color: black;
-}
-
-.specs {
+    padding: 1rem;
     width: 100%;
-    height: 100%;
-    display: flex;
+    height: 15rem;
+    text-decoration: none;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item:hover {
+    background: #fafafa;
+    box-shadow: inset 0 0 0 1px #e5e5e5;
+}
+
+.image-wrapper {
+    position: relative;
+    min-width: 195px;
 }
 
 .product-image {
     width: 195px;
     height: 195px;
     object-fit: cover;
+    border-radius: 8px;
 }
 
-p {
-    color: black;
+.badge-discount {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #e53935;
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.specs {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.name-and-price {
+    width: 65%;
+}
+
+.product-name {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #212121;
 }
 
 .seller-name {
-    font-size: x-small;
+    font-size: 0.75rem;
+    color: #757575;
+    margin: 4px 0;
 }
 
-.rate-and-sold{
+.verified {
+    color: #4caf50;
+    margin-left: 4px;
+}
+
+.price-container {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 1rem;
-    width: 40%;
-    p{
-        margin: 0;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2e7d32;
+}
+
+.previous-price {
+    font-size: 0.9rem;
+    color: #9e9e9e;
+    text-decoration: line-through;
+}
+
+.rate-and-sold {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+    color: #ffb300;
+}
+
+.stock {
+    font-size: 0.8rem;
+    color: #616161;
+}
+
+.low-stock {
+    color: #d32f2f;
+    font-weight: 600;
+}
+
+.tags {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.tag.outline {
+    border: 1px solid #ccc;
+    color: #555;
+    background: transparent;
+}
+
+.tag.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.tag.info {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.sold {
+    font-size: 0.75rem;
+    color: #757575;
+}
+
+@media (max-width: 768px) {
+    .tags {
+        gap: 4px;
+    }
+
+    .tag {
+        font-size: 0.65rem;
+    }
+
+    .sold {
+        font-size: 0.7rem;
     }
 }
-.name-and-price{
-    width: 60%;
+
+@media (max-width: 480px) {
+
+    .item {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        height: auto;
+    }
+
+    .image-wrapper {
+        min-width: 100%;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 200px;
+        border-radius: 10px;
+    }
+
+    .badge-discount {
+        font-size: 0.7rem;
+        padding: 3px 6px;
+    }
+
+    .specs {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .name-and-price,
+    .rate-and-sold {
+        width: 100%;
+    }
+
+    .product-name {
+        font-size: 0.95rem;
+        line-height: 1.2;
+    }
+
+    .seller-name {
+        font-size: 0.7rem;
+    }
+
+    .price-container {
+        margin-top: 4px;
+    }
+
+    .price {
+        font-size: 1.15rem;
+    }
+
+    .previous-price {
+        font-size: 0.8rem;
+    }
+
+    .tags {
+        margin-top: 0.4rem;
+        gap: 4px;
+    }
+
+    .tag {
+        font-size: 0.6rem;
+        padding: 2px 6px;
+    }
+
+    .rate-and-sold {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.25rem;
+    }
+
+    .rating {
+        font-size: 0.75rem;
+    }
+
+    .sold {
+        font-size: 0.7rem;
+    }
+
+    .stock {
+        font-size: 0.7rem;
+    }
 }

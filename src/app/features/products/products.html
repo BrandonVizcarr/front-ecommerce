@@ -1,35 +1,5 @@
 <p-panel styleClass="full-panel">
     <div class="main-container">
-        <div class="filter-list">
-            <p>
-                <b>Price:</b>
-            </p>
-            <div class="range-price-container">
-                <div class="p-field">
-                    <p-inputNumber
-                    inputStyleClass="small-input"
-                    inputId="minPrice"
-                    mode="currency"
-                    currency="USD"
-                    locale="en-US"
-                    placeholder="min"
-                    ></p-inputNumber>
-                </div>
-                <span style="color: grey;">-</span>
-                <div class="p-field">
-                    <p-inputNumber
-                    inputStyleClass="small-input"
-                    inputId="maxPrice"
-                    mode="currency"
-                    currency="USD"
-                    locale="en-US"
-                    placeholder="max"
-                    ></p-inputNumber>
-                </div>
-                <p-button icon="pi pi-angle-right" [rounded]="true" severity="success" size="small"/>
-
-            </div>    
-        </div>
         <div class="item-list">
             @for(product of products; track product.productId){
                 <app-product-item [productItem]="product"></app-product-item>
