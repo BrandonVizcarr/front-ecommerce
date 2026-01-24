@@ -25,20 +25,21 @@
                     {{ product?.seller.name }}
 
                     @if (product?.seller.verified) {
-                    <i class="pi pi-check-circle" style="color: #4caf50; margin-left: 4px;">
-                    </i>
+                    <i class="pi pi-check-circle verified"></i>
                     }
                 </p>
 
-                <p>
-                    price: {{ product?.price }} $
+                <div class="price-container">
+                    <span class="price">
+                        ${{ product?.price }}
+                    </span>
 
-                    @if (product?.discount != 0) {
-                    <span class="discount">
-                        {{ product?.discount }}% OFF
+                    @if (product?.previousPrice) {
+                    <span class="previous-price">
+                        ${{ product?.previousPrice }}
                     </span>
                     }
-                </p>
+                </div>
                 <div class="rate-and-sold">
                     <div class="rating">
                         <i class="pi pi-star-fill"></i>
@@ -46,6 +47,23 @@
                     </div>
 
                     <p>stock: {{ product?.stock }}</p>
+                </div>
+                <div class="tags">
+                    <span class="tag outline">
+                        {{ product?.descCondition }}
+                    </span>
+
+                    @if (product?.freeDelivery) {
+                    <span class="tag success">
+                        <i class="pi pi-truck"></i> Free delivery
+                    </span>
+                    }
+
+                    @if (product?.fastDelivery) {
+                    <span class="tag info">
+                        <i class="pi pi-bolt"></i> Fast delivery
+                    </span>
+                    }
                 </div>
                 <div class="about-product">
                     <p>About the product:</p>
@@ -58,10 +76,10 @@
                 <p-card [style]="{ width: '100%', padding: '1rem', 'text-align': 'center' }">
                     <div class="quantity-container">
                         <p>Quantity:</p>
-                        <select class="form-select"  [(ngModel)]="quantity">
-                        @for (n of quantities; track $index) {
+                        <select class="form-select" [(ngModel)]="quantity">
+                            @for (n of quantities; track $index) {
                             <option [value]="n">{{ n }}</option>
-                        }
+                            }
                         </select>
                     </div>
                     <p-button (click)="addToCard()">Add to cart <i class="pi pi-shopping-cart"></i></p-button> &nbsp;
@@ -69,8 +87,8 @@
                     <div class="seller-info">
                         <p>verified store: {{product?.seller.name}}
                             @if (product?.seller.verified) {
-                                <i class="pi pi-check-circle" style="color: #4caf50; margin-left: 4px;">
-                                </i>
+                            <i class="pi pi-check-circle" style="color: #4caf50; margin-left: 4px;">
+                            </i>
                             }
                         </p>
                         <img [src]="product?.seller.profileImg" alt="" class="seller-img">
