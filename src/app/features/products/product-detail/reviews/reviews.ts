@@ -2,10 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProductService } from '../../services/products.services';
 import { ReviewModel } from '../../../../core/models/review.model';
 import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-reviews',
-  imports: [CardModule],
+  imports: [CardModule, ButtonModule],
   templateUrl: './reviews.html',
   styleUrl: './reviews.scss',
 })
