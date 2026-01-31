@@ -5,16 +5,17 @@ import { Observable } from "rxjs";
 import { WebResponseModel } from "../../../core/web-reponse-model";
 import { PageableModel } from "../../../core/models/pageable.model";
 import { ProductModel } from "../../../core/models/product.model";
+import { ReviewModel } from "../../../core/models/review.model";
 
 @Injectable({
-    providedIn:'root'
+    providedIn: 'root'
 })
 export class ProductService {
 
-    private apiRoot:string;
+    private apiRoot: string;
 
-    constructor(private http:HttpClient){
-        this.apiRoot=environment.apiUrl;
+    constructor(private http: HttpClient) {
+        this.apiRoot = environment.apiUrl;
     }
 
     public getProducts(params?: {
@@ -46,8 +47,12 @@ export class ProductService {
         );
     }
 
-    public getProductsById(id:string):Observable<WebResponseModel<ProductModel>>{
+    public getProductsById(id: string): Observable<WebResponseModel<ProductModel>> {
         return this.http.get<WebResponseModel<ProductModel>>(`${this.apiRoot}/products/${id}`);
+    }
+
+    public getReviews(id: string): Observable<WebResponseModel<PageableModel<ReviewModel>>> {
+        return this.http.get<WebResponseModel<PageableModel<ReviewModel>>>(`${this.apiRoot}/products/${id}/reviews`);
     }
 
 }

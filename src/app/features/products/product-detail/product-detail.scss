@@ -3,51 +3,62 @@
     display: flex;
     gap: 1rem;
 }
-.rate-and-sold{
+
+.rate-and-sold {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 1rem;
     width: 40%;
-    p{
+
+    p {
         margin: 0;
     }
 }
-.product-actions{
+
+.product-actions {
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
+
 .about-product {
     margin-top: 1rem;
+
     p {
         margin: 0;
         font-weight: bold;
     }
 }
-.cards-container{
+
+.cards-container {
     width: 45%;
     display: flexform-select;
     justify-content: flex-end;
     height: 70%;
 }
-.seller-info{
+
+.seller-info {
     margin-top: 1rem;
     font-size: small;
 }
-.quantity-container{
+
+.quantity-container {
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2px;
-    p{
+
+    p {
         margin: 0;
     }
 }
-.form-select{
+
+.form-select {
     width: 4rem;
 }
+
 .rating {
     display: flex;
     align-items: center;
@@ -55,6 +66,7 @@
     font-weight: 600;
     color: #ffb300;
 }
+
 .tags {
     margin-top: 0.5rem;
     display: flex;
@@ -87,11 +99,12 @@
     background: #e3f2fd;
     color: #1565c0;
 }
+
 .seller-img {
-  width: 64px;
-  height: 64px;
-  object-fit: cover;
-  border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .viewer {
@@ -113,26 +126,31 @@
     border-radius: 10px;
     overflow: hidden;
 }
+
 .verified {
     color: #4caf50;
     margin-left: 4px;
 }
+
 .price-container {
     display: flex;
     align-items: center;
     gap: 8px;
     margin-top: 6px;
 }
+
 .price {
     font-size: 1.25rem;
     font-weight: 700;
     color: #2e7d32;
 }
+
 .previous-price {
     font-size: 0.9rem;
     color: #9e9e9e;
     text-decoration: line-through;
 }
+
 .main-img {
     width: 100%;
     height: 100%;
@@ -193,4 +211,8 @@
     border-color: #1a73e8;
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(26, 115, 232, 0.3);
+}
+
+.reviews {
+    margin-top: 2rem;
 }
